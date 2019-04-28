@@ -8,6 +8,11 @@ jsdom = require('jsdom').jsdom;
 mu = require('mu2');
 mu.root = __dirname + '/templates';
 
+process.on('uncaughtException', function (err) {
+  console.error(err);
+  console.log("Node NOT Exiting...");
+});
+
 function render(response, ctx){
     mu.compileAndRender('index.html', ctx).pipe(response);
 }
